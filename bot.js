@@ -14,10 +14,25 @@ client.on('ready', () => {
  
 client.on('message', msg => {
     
-    if (badwords.badwords.some(substring=>msg.content.includes(substring))) {
+    if (badwords.badwords.some(substring=>msg.content.includes(substring.toLowerCase()))) {
         msg.delete()
     }
-    
+
 });
+
+
+client.on('voiceStateUpdate', (oldState, newState) =>{
+    let oldChannel = oldState.channel;
+    let newChannel = newState.channel;
+
+  if(oldChannel === undefined && newChannel !== undefined){
+    let channel = client.channels.cache.get(newChannel.id)
+    channel.send('Test')
+  }
+
+});
+  
+
+
  
 client.login(process.env.BOT_TOKEN);
