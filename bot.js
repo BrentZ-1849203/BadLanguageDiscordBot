@@ -24,11 +24,11 @@ client.on('message', msg => {
 client.on('voiceStateUpdate', (oldState, newState) =>{
     let oldChannel = oldState.channel;
     let newChannel = newState.channel;
-
-  if(oldChannel === undefined && newChannel !== undefined){
-    let channel = client.channels.cache.get(newChannel.id)
-    channel.send('Test')
-  }
+    console.log(oldChannel === undefined && newChannel !== undefined)
+    if(oldChannel === undefined && newChannel !== undefined){
+      let channel = client.channels.cache.get(newChannel.id)
+      channel.send('Test')
+    }
 
 });
   
